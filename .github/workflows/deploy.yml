@@ -18,8 +18,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -49,7 +48,9 @@ jobs:
           echo "Using BASE_PATH=${BASE_PATH}"
 
       - name: Build Slidev
-        run: pnpm exec slidev build --base="${BASE_PATH}"
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm exec slidev build --base="${BASE_PATH}" --sourcemap false
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
