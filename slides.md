@@ -40,6 +40,8 @@ mdc: true
 </div>
 
 ---
+src: ./pages/personal_intro.md
+---
 
 ## transition: fade-out
 
