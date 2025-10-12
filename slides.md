@@ -39,10 +39,26 @@ mdc: true
   </a>
 </div>
 
+
 ---
 src: ./pages/personal_intro.md
 ---
 
+---
+src: ./pages/react_assumption.md
+---
+
+---
+src: ./pages/cost_of_vdom.md
+---
+
+---
+src: ./pages/new_assumption.md
+---
+
+---
+src: ./pages/fine_grained.md
+---
 ## transition: fade-out
 
 # What is Slidev?
@@ -116,7 +132,7 @@ Hover on the bottom-left corner to see the navigation's controls panel, [learn m
 ---
 
 layout: two-cols
-layoutClass: gap-16
+layoutClass: gap-1
 
 ---
 
@@ -578,6 +594,9 @@ dragPos:
 square: -63,0,0,0
 
 ---
+dragPos:
+  square: 0,-112,0,0
+---
 
 # Draggable Elements
 
@@ -624,6 +643,7 @@ src: ./pages/imported-slides.md
 hide: false
 
 ---
+
 
 ---
 
