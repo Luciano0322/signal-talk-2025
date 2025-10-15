@@ -57,9 +57,39 @@ src: ./pages/new_assumption.md
 ---
 
 ---
-src: ./pages/fine_grained.md
+src: ./pages/why_signals.md
 ---
+
+---
+src: ./pages/scheduler.md
+---
+
+---
+src: ./pages/demo.md
+---
+
+---
+src: ./pages/history.md
+---
+
+---
+src: ./pages/push_vs_pull.md
+---
+
+---
+src: ./pages/reactivity_three_paths.md
+---
+
+---
+src: ./pages/signal_core_concept.md
+---
+
+---
+src: ./pages/dependency_tracking.md
+---
+
 ## transition: fade-out
+---
 
 # What is Slidev?
 
@@ -99,10 +129,8 @@ Here is another comment.
 -->
 
 ---
-
 transition: slide-up
 level: 2
-
 ---
 
 # Navigation
@@ -177,7 +205,7 @@ doubled.value = 2;
 
 <!-- This allow you to embed external code blocks -->
 
-<<< @/snippets/external.ts#snippet
+<<< @/snippets/external.ts#snippet {all|3|all}
 
 <!-- Footer -->
 

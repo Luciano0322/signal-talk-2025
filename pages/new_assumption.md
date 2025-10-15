@@ -5,6 +5,8 @@ layout: center
 # 如果資料可以被觀測呢？
 
 ---
+layout: center
+---
 
 > 如果每個資料都知道「誰在用它」？
 
@@ -18,5 +20,6 @@ layout: center
 
 <v-click>
 
-# 這就是 Fine-grained Reactivity 的起點。
+# 這就是 Fine-grained Reactivity 的精神。
+
 </v-click>
