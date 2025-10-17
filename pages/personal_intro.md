@@ -7,9 +7,8 @@ class: text-center
 
 ---
 
-## 我是誰
-
-### 李胤銘 (Luciano)
+## 李胤銘 (Luciano)
+### Frontend Engineer · React Enthusiast · Signal Explorer
 
 - 我是一個喜歡把「學到的技術」轉成「能讓人理解的內容」的工程師。
 - 曾自行實作一套開源的信號系統（segnale-react）
@@ -28,6 +27,7 @@ class: text-center
 <!-- 有次在研究 React 的 `useEffect` 時，   -->
 - 研究 ~~useFootgun~~  `useEffect`  
 - dependency array 暗藏的玄機
+- 搭捷運的啟發
 - 深入理解 reactive core 的目的
 
 從那之後，我開始一步步重構整個 reactive core，  
