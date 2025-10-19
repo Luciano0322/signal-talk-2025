@@ -42,7 +42,7 @@ transition: slide-left
 
 ---
 
-### 核心差異一覽（直覺版）
+### 核心差異一覽
 
 | 面向 | React useState & VDOM | Fine-Grained（Signal/Atom） |
 |---|---|---|
@@ -60,6 +60,9 @@ transition: slide-left
 
 </v-click>
 
+---
+layout: center
+class: text-center
 ---
 
 ### 為什麼用 useState 會「多做功」？
@@ -88,6 +91,8 @@ transition: slide-left
 ### Signal 的心智圖
 <img src="https://ithelp.ithome.com.tw/upload/images/20250807/201290200xRWqSShC7.png" class="w-[60%] h-full mx-auto mt-3 rounded" />
 
+---
+layout: center
 ---
 
 ### Fine-grained 三步驟：讀 → 寫 → 傳
@@ -135,8 +140,12 @@ const Counter = () => (
 ```
 
 ---
+layout: center
+---
 
-### Fine-grained 的四個優勢
+<h2 class="mb-4">
+Fine-grained 的四個優勢
+</h2>
 <v-clicks>
 
 1. **更新成本與 UI 大小解耦**：只重算受影響的 Computed/Effect；大列表/白板/表格與資料單元數線性關係。   
@@ -146,6 +155,8 @@ const Counter = () => (
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### 小結：Fine-grained 的核心價值
@@ -158,12 +169,14 @@ const Counter = () => (
 </v-clicks>
 <v-click> 
 
-> **Fine-grained Reactivity**  
-> 不再以「元件」為界，而是以「資料」為界。  
-> 每一次變動，都是**可被追蹤、可被推導**的結果。
+<h4 class="my-4"><b>Fine-grained Reactivity</b></h4>  
+<p class="border-l-4 border-[#00e6b8] border-solid pl-4">不再以「元件」為界，而是以「資料」為界。</p> 
+<p class="border-l-4 border-[#00e6b8] border-solid pl-4">每一次變動，都是<b>可被追蹤、可被推導</b>的結果。</p>
 
 </v-click>
 
+---
+layout: center
 ---
 
 ### ⏱️ 接下來的問題：**什麼時候該執行？**

@@ -13,7 +13,7 @@ transition: slide-left
 mdc: true
 ---
 
-### React（Pull Model）
+### React
 ```jsx {all|2|3|7|13-21|14|15|17|2|3|7|13|all}
 export default function App() {
   const [count, setCount] = useState(0);
@@ -41,7 +41,7 @@ function Counter({ count, setCount }) {
 
 ::right::
 
-### Signal（Push-then-Pull Model）
+### Signal
 ```tsx {all|1|4|8|14-21|15|17-19|all}
 const { get: count, set: setCount } = signal(0)
 
@@ -65,6 +65,8 @@ function Counter() {
   )
 }
 ```
+---
+layout: center
 ---
 
 <v-clicks transition="fade"> 

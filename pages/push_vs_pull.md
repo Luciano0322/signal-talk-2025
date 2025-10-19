@@ -5,15 +5,21 @@ transition: slide-left
 
 # Push vs Pull
 ---
+layout: center
+---
 
 ### 📖 前情提要
 
-我們這裡要釐清：
-> **Push-based** 與 **Pull-based** 這兩種模式，  
-> 在細顆粒度（fine-grained） reactivity 裡有什麼不同？
-
+<p>我們這裡要釐清：</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+<b>Push-based</b> 與 <b>Pull-based</b> 這兩種模式，
+</p>
+<p>
+在細顆粒度（fine-grained） reactivity 裡有什麼不同？
+</p>
 ---
-
+layout: center
+---
 ### 🧩 核心概念
 
 <v-clicks>
@@ -27,7 +33,8 @@ transition: slide-left
 </v-clicks>
 
 ---
-
+layout: center
+---
 ### 🍱 生活案例：Push-based
 
 <v-clicks>
@@ -37,11 +44,17 @@ transition: slide-left
 - **推送（完成即通知）**：餐做好 → 圓盤震動  
 - **副作用（取餐）**：收到訊號就去櫃台領餐  
 
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
 🧠 對應 reactivity：
-> 寫入時就沿依賴鏈重算並通知後續節點。
+</p>
+<p class="border-l-4 border-[#00e6b8] border-solid pl-4">
+寫入時就沿依賴鏈重算並通知後續節點。
+</p>
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### 🧋 生活案例：Pull-based
@@ -54,9 +67,12 @@ transition: slide-left
 - **讀取 → 重算（查看才發生）**：看到號碼才去拿  
 - **副作用（取餐）**：抬頭看到才動作  
 
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
 🧠 對應 reactivity：
-> 寫入只標記 dirty，真正計算延後到被讀取時。
-
+</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+寫入只標記 dirty，真正計算延後到被讀取時。
+</p>
 </v-clicks>
 
 ---
@@ -68,8 +84,12 @@ transition: slide-left
 | **Push-based** | 寫入即計算：資料一改動就立刻 propagate | `set() → propagate → compute → effect` |
 | **Pull-based** | 寫入只標記：等讀取時再計算 | `set() → markDirty ⏸ read() → compute → effect` |
 
-> ☑️ 兩者都會「推送」訊號：  
-> Push 推的是 **計算**，Pull 推的是 **標記**。
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+兩者都會「推送」訊號：  
+</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+Push 推的是 <b>計算</b>，Pull 推的是 <b>標記</b>。
+</p>
 
 ---
 
@@ -117,11 +137,15 @@ transition: slide-left
 | 動畫、Timeline、Scroll 驅動 | **Pull + Scheduler** | 延遲重算、批次更新 frame |
 | 資料 Pipeline、一次性運算 | **Push-on-Commit** | 一次算完再分發重用結果 |
 
-> React 屬於 **Pull + Scheduler**（靠 batching update）。  
-> RxJS、MobX 則偏向 **Push-on-Commit**。
-
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+React 屬於 <b>Pull + Scheduler</b>（靠 batching update）。  
+</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+RxJS、MobX 則偏向 <b>Push-on-Commit</b>。
+</p>
 ---
-
+layout: center
+---
 ### ❓ 常見迷思澄清
 
 <v-clicks>
@@ -140,6 +164,8 @@ transition: slide-left
 </v-clicks>
 
 ---
+layout: center
+---
 
 ### 🔍 為什麼即使是 fine-grained 系統，也仍需要 Pull？
 
@@ -153,7 +179,8 @@ transition: slide-left
 </v-clicks>
 
 ---
-
+layout: center
+---
 ### 🧠 結語：Push vs Pull 的意義
 
 <v-clicks>

@@ -5,7 +5,8 @@ transition: slide-left
 
 # Signal 運作原理：資料 → 衍生 → 副作用
 ---
-
+layout: center
+---
 ### 🧭 前言
 
 <v-clicks>
@@ -45,8 +46,7 @@ transition: slide-left
 
 ### 📦 Signal：最小的「狀態容器」
 
-<!-- ![Signal 結構圖](https://ithelp.ithome.com.tw/upload/images/20250806/20129020moMcickoEs.png){class="w-[70%] mx-auto"} -->
-<img class="w-[90%] h-[60%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020moMcickoEs.png">
+<img class="w-[90%] h-[60%] mt-4 mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020moMcickoEs.png">
 
 ::right::
 
@@ -68,7 +68,7 @@ transition: slide-left
 ### ⚙️ Signal 的實作流程
 
 <!-- ![Signal 流程](https://ithelp.ithome.com.tw/upload/images/20250806/20129020u1frfN4Spv.png){class="w-[70%] mx-auto"} -->
-<img class="w-[90%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020u1frfN4Spv.png">
+<img class="w-[90%] mt-4 mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020u1frfN4Spv.png">
 
 ::right::
 
@@ -89,7 +89,7 @@ transition: slide-left
 ### 🧮 Computed：惰性快取的衍生值
 
 <!-- ![Computed 圖](https://ithelp.ithome.com.tw/upload/images/20250806/20129020zZqaUl4vkq.png){class="w-[70%] mx-auto"} -->
-<img class="w-[90%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020zZqaUl4vkq.png">
+<img class="w-[90%] mt-4 mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020zZqaUl4vkq.png">
 
 ::right::
 
@@ -112,7 +112,7 @@ transition: slide-left
 ### ⚡ Effect：副作用的執行者
 
 <!-- ![Effect 圖](https://ithelp.ithome.com.tw/upload/images/20250806/20129020TzdL2M5JLF.png){class="w-[70%] mx-auto"} -->
-<img class="w-[90%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020TzdL2M5JLF.png">
+<img class="w-[90%] mt-4 mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020TzdL2M5JLF.png">
 
 ::right::
 
@@ -130,7 +130,7 @@ transition: slide-left
 ### 🕹️ Scheduler：批次與優先權的守門員
 
 <!-- ![Scheduler 流程](https://ithelp.ithome.com.tw/upload/images/20250806/20129020kh9WF8xNiJ.png){class="w-[75%] mx-auto"} -->
-<img class="w-[90%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020kh9WF8xNiJ.png">
+<img class="w-[90%] mt-4 mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020kh9WF8xNiJ.png">
 
 <v-clicks class="pt-8">
 
@@ -178,7 +178,8 @@ transition: slide-left
 | 記憶體洩漏 | 動態建立 Effect 未 dispose | `onCleanup()` 或 unmount 時自動清理 |
 
 ---
-
+layout: center
+---
 ### 🧠 結語
 
 <v-clicks>

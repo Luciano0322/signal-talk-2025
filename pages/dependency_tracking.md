@@ -7,7 +7,8 @@ mdc: true
 # Dependency Tracking
 ## 讓資料自己記得誰在依賴它
 ---
-
+layout: center
+---
 ### 🧭 什麼是 Dependency Tracking？
 
 <v-clicks>
@@ -176,6 +177,8 @@ effect(() => {
 
 </v-click>
 
+---
+layout: center
 ---
 
 ### 🧠 結語：依賴追蹤的意義

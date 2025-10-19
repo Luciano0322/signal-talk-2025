@@ -5,17 +5,20 @@ transition: slide-left
 
 # Reactivity 三路線：Signal、Proxy、Virtual DOM
 ---
-
+layout: center
+---
 ### 💡 問題意識
-
-> 我們常在 Signal / Proxy / Virtual DOM 之間搖擺：  
-> 哪個更快？哪個更好維護？
+<p>
+我們常在 Signal / Proxy / Virtual DOM 之間搖擺：  
+</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+哪個更快？哪個更好維護？
+</p>
 
 <v-click>
 
 如果我們回到那句經典口號：
-> **UI = f(state)**  
-答案其實會自己浮現。
+### UI = f(state)  
 
 </v-click>
 
@@ -45,6 +48,8 @@ transition: slide-left
 </v-click>
 
 ---
+layout: center
+---
 
 ### 🧭 三條演化路線
 
@@ -56,6 +61,8 @@ transition: slide-left
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### 🧩 Signal：把「更新」包在值裡
@@ -76,6 +83,8 @@ transition: slide-left
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### 🧠 Proxy Reactive：用語言特性自動化依賴
@@ -98,6 +107,8 @@ transition: slide-left
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### ⚙️ Virtual DOM：用「比對」換取「無侵入」
@@ -181,7 +192,8 @@ function Counter() {
 | 局部熱點需極速          | **React + Signals** | 混合策略，熱點區域細化更新     |
 
 ---
-
+layout: center
+---
 ### 小結
 <v-clicks>
 

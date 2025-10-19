@@ -1,9 +1,10 @@
 ---
 # try also 'default' to start simple
-theme: seriph
+theme: default
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+# background: https://ithelp.ithome.com.tw/upload/images/20250806/20129020K0qat8VUVg.png
+background: "#0f1117"
 # some information about your slides (markdown enabled)
 title: Reactivity 小技巧大變革：掌握 Signals 就這麼簡單！
 info: |
@@ -31,10 +32,7 @@ mdc: true
 </div>
 
 <div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
+  <a href="https://github.com/Luciano0322" target="_blank" class="slidev-icon-btn">
     <carbon:logo-github />
   </a>
 </div>

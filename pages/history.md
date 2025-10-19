@@ -4,6 +4,9 @@ transition: slide-left
 ---
 
 # 承先啟後的發展：Reactivity 的進化史
+
+---
+layout: center
 ---
 
 ### 🧩 2010：Knockout.js 的誕生
@@ -14,12 +17,15 @@ transition: slide-left
 
 <v-click>
 
-> Knockout 讓大家第一次看到：
->  
-> 👉 *資料 → 視圖* 可以自動同步，而不是人為改 DOM。
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+Knockout 讓大家第一次看到：  
+<b>資料 → 視圖</b> 可以自動同步，而不是人為改 DOM。
+</p>
 
 </v-click>
 
+---
+layout: center
 ---
 
 ### ⚙️ Reactivity 的核心概念
@@ -45,9 +51,10 @@ transition: slide-left
 | **Pull**（框架主動「打聽」） | 迴圈比對 / Virtual DOM diff | dirty-checking, diff |
 | **Push**（資料主動「通知」） | watcher / signal | observable, effect |
 
-> 多數現代框架其實是 Hybrid：  
-> 由資料端 push「失效」，再於適當時機 pull「重算」。
-
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+多數現代框架其實是 Hybrid：  
+由資料端 push「失效」，再於適當時機 pull「重算」。
+</p>
 ---
 
 ### 🧭 四大模型的演進光譜
@@ -147,7 +154,11 @@ transition: slide-left
 
 <v-click>
 
-> 即使在最細顆粒的系統裡，我們仍然需要 Pull。  
-> 因為真正的難題不只是「通知」，而是「何時該重算」。
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+即使在最細顆粒的系統裡，我們仍然需要 Pull。  
+</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+因為真正的難題不只是「通知」，而是「何時該重算」。
+</p>
 
 </v-click>

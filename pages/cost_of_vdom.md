@@ -35,6 +35,9 @@ Component -->|產生新的| VirtualDOM[Virtual DOM]
 VirtualDOM -->|Diff + Patch| DOM[Real DOM]
 ```
 <v-click>
-React 一直努力讓這條路變得更快，
-但從沒改變過「需要比對」這件事。
+
+<p class="text-center pt-8"> 
+React 一直努力讓這條路變得更快，但從沒改變過「需要比對」這件事。
+</p>
+
 </v-click>
