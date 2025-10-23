@@ -7,7 +7,7 @@ transition: slide-left
 ---
 layout: center
 ---
-### 🧭 前言
+### 前情提要
 
 <v-clicks>
 

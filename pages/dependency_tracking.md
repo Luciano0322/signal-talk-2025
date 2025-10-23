@@ -32,8 +32,8 @@ layout: center
 
 | 角色 | 職責 | 類比 |
 |------|------|------|
-| **Source** | 原始資料來源，可變 signal | Excel 儲存格 |
-| **Computed** | 基於 source 的純函式衍生值 | 公式欄位 |
+| **Signal** | 原始資料來源 | Excel 儲存格 |
+| **Computed** | 基於 Signal 的純函式衍生值 | 公式欄位 |
 | **Effect** | 與外界互動的副作用 | 畫面更新 / API 請求 |
 
 <!-- <img src="https://ithelp.ithome.com.tw/upload/images/20250807/20129020ADuJcWzkJ6.png" class="w-[70%] mx-auto mt-4" /> -->
@@ -52,6 +52,8 @@ Effect --> Computed
 </v-click>
 
 ---
+layout: two-cols
+---
 
 ### ⚙️ 運作原理：三步驟
 
@@ -59,27 +61,38 @@ Effect --> Computed
 
 <v-clicks>
 
-- 執行 Computed 或 Effect 時，  
-  getter 會自動記錄目前取到的 Source。
+- 執行 Computed 或 Effect 時，getter 會自動記錄目前取到的 Source。
 - 建立「誰依賴誰」的連結，存進一張 dependency graph。
 </v-clicks>
 
-```ts
-const effectStack: Computation[] = []
+::right::
 
+```ts
+export interface Computation {
+    dependencies: Set<Set<Computation>>;
+    execute: () => void;
+}
+const effectStack: Computation[] = [];
+export function subscribe(
+  current: Computation,
+  subscriptions: Set<Computation>
+): void {
+    subscriptions.add(running);
+    current.dependencies.add(subscriptions);
+}
 function createSignal<T>(value: T) {
-  const subscribers = new Set<Computation>()
-  const getter = () => {
-    const curr = effectStack.at(-1)
-    if (curr) subscribers.add(curr)
-    return value
-  }
-  const setter = (next: T) => {
-    if (next === value) return
-    value = next
-    subscribers.forEach(sub => sub.execute())
-  }
-  return { getter, setter }
+    const subscribers = new Set<Computation>();
+    const getter = () => {
+        const currEffect = effectStack[effectStack.length - 1];
+        if (currEffect) subscribe(currEffect, subscribers);
+        return value;
+    };
+    const setter = (newValue: T) => {
+        if (newValue === value) return;
+        value = newValue;
+        subscribers.forEach(sub => sub.execute());
+    };
+    return { getter, setter };
 }
 ```
 

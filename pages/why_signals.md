@@ -50,7 +50,7 @@ transition: slide-left
 | **依賴追蹤** | 每次 render 重跑 → 比對 VDOM | 讀取即註冊；寫入精準通知 |
 | **排程模型** | 異步批次 + Diff + Commit | 異步批次（batch）+ 拓撲排序 + 直達副作用 |
 | **閒置成本** | UI 不變也要重跑/生成 VDOM | 結果不變即短路，不進下游 |
-| **心智模型** | UI = f(state) | state = f(source)；UI 是 Effect |
+| **心智模型** | UI = f(state) | state = f(source)；UI 是一種  Effect |
 | **最佳化** | memo/useMemo/useCallback | 多數內建；跨層才顯式 memo |
 | **DevTools** | 成熟 | 起步（Solid/Vue/MobX 等） |
 
@@ -95,7 +95,7 @@ class: text-center
 layout: center
 ---
 
-### Fine-grained 三步驟：讀 → 寫 → 傳
+### Fine-grained Reactivity 三步驟：讀 → 寫 → 傳
 
 | 階段 | 示意程式碼 | 內部動作 |
 |---|---|---|
@@ -103,16 +103,10 @@ layout: center
 | **寫（Mark Dirty）** | `count.set(v => v + 1)` | 只做兩件事：①更新值 ②把受影響節點標 dirty 入佇列 |
 | **傳（Propagate）** | （Scheduler flush） | 拓撲排序：先重算 Computed → 值有變才往下游 Effect |
 
-<v-click>
-
-**短路示例**：`Math.floor(a/10)` 值未變 → **整條支鏈不觸發**，成本 ≈ 受影響節點數 × O(1)
-
-</v-click>
-
 ---
 
 ### 對照範例：Counter
-
+ 
 **React**
 ```tsx {all|4|2|4-7|all}
 function Counter() {
@@ -148,10 +142,10 @@ Fine-grained 的四個優勢
 </h2>
 <v-clicks>
 
-1. **更新成本與 UI 大小解耦**：只重算受影響的 Computed/Effect；大列表/白板/表格與資料單元數線性關係。   
-2. **預測式資料流**：依賴圖可走訪 → 變動追蹤、why-did-you-update 變簡單。  
+1. **更新成本與 UI 大小解耦**：只重算受影響的 Computed / Effect。   
+2. **預測式資料流**：依賴圖可走訪 → 變動追蹤變簡單。  
 3. **副作用分離**：`effect(() => domRef(), data())` 僅在依賴值真的改變時觸發，避開 deps 陣列陷阱。  
-4. **測試更輕量**：Computed 為純函式 → 可在 Node 跑，不必拉 DOM / renderer。  
+4. **測試更輕量**：Computed 為純函數 → 可在 Node 跑，不必拉 DOM / renderer。  
 
 </v-clicks>
 
@@ -186,6 +180,6 @@ layout: center
 - 我們已經知道「要改誰」——依賴追蹤幫我們決定了更新範圍。  
 - 但還有另一個問題：**這些更新該在什麼時候執行？**
 - React 用 **Fiber Scheduler** 負責這件事；  
-  Fine-grained 系統也有自己的 **Scheduler**，但邏輯完全不同。
+  Signals 系統也有自己的 **Scheduler**，但邏輯完全不同。
 
 </v-clicks>

@@ -82,26 +82,6 @@ layout: center
 
 ---
 
-### 🧩 模型視覺化流程對照
-
-<v-clicks>
-
-- Dirty-checking  
-  ![Dirty-checking](https://ithelp.ithome.com.tw/upload/images/20250902/20129020jaT1gNL2Kb.png)
-
-- Virtual DOM diff  
-  ![VDOM diff](https://ithelp.ithome.com.tw/upload/images/20250902/20129020EyuhcMXbG4.png)
-
-- Watcher / Observable Graph  
-  ![Watcher Graph](https://ithelp.ithome.com.tw/upload/images/20250902/20129020Dv1KT4vrnV.png)
-
-- Fine-grained Signals  
-  ![Fine-grained](https://ithelp.ithome.com.tw/upload/images/20250902/20129020iZIiWIcr7x.png)
-
-</v-clicks>
-
----
-
 ### 🔍 深入比較重點
 
 <v-clicks>
@@ -137,6 +117,8 @@ layout: center
 
 </v-clicks>
 
+---
+layout: center
 ---
 
 ### 🧠 推與拉的歷史
