@@ -4,8 +4,21 @@ transition: slide-left
 mdc: true
 ---
 
-# 為何需要 Signal？
-## 把「重算」縮到資料最小單元
+# 什麼是 Signals？
+
+---
+
+## Signals 是資料流動的圖(Graph)
+<img src="../assert/signal_effect_graph.png" class="mt-4 w-[80%] h-[80%] mx-auto rounded shadow" />
+
+Signals 讓資料流變得像神經網路一樣精準，而不是用洪水式的方式重建整座城市。
+
+---
+layout: center
+---
+## 為什麼需要 Signal?
+
+
 ---
 layout: two-cols
 transition: slide-left
@@ -169,17 +182,3 @@ layout: center
 
 </v-click>
 
----
-layout: center
----
-
-### ⏱️ 接下來的問題：**什麼時候該執行？**
-
-<v-clicks>
-
-- 我們已經知道「要改誰」——依賴追蹤幫我們決定了更新範圍。  
-- 但還有另一個問題：**這些更新該在什麼時候執行？**
-- React 用 **Fiber Scheduler** 負責這件事；  
-  Signals 系統也有自己的 **Scheduler**，但邏輯完全不同。
-
-</v-clicks>

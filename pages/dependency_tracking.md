@@ -151,22 +151,6 @@ function schedule(job: () => void) {
 
 ---
 
-### 🧮 Push vs Pull（複習）
-
-| 模型             | 說明                 | 代表                                |
-| -------------- | ------------------ | --------------------------------- |
-| **Pull-based** | UI 主動查詢變化（diffing） | React / Virtual DOM               |
-| **Push-based** | 資料主動通知更新           | Solid.js / MobX / Angular Signals |
-
-<v-click>
-
-Signals 採 **Push-based + 顯式依賴圖**，  
-可以直接知道「誰受影響」，避免整棵樹 diff。
-
-</v-click>
-
----
-
 ### ⚖️ 動態依賴：最棘手的挑戰
 
 ```ts
