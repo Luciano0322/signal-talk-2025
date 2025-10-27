@@ -154,7 +154,7 @@ layout: center
   → ❌ 不必，只在讀取時檢查該鏈的 dirty 標記。  
 
 - **Push 必定浪費計算？**  
-  → ❌ 當更新後立刻被使用，先算反而更快（例如協作游標）。  
+  → ❌ 當更新後立刻被使用，先算反而更快（例如 Canvas 小遊戲）。  
 
 - **Push 與 Pull 只能二選一？**  
   → ❌ 現代 signal framework 多採 **Hybrid push-pull**：  
@@ -181,7 +181,7 @@ layout: center
 ---
 layout: center
 ---
-### 🧠 結語：Push vs Pull 的意義
+### Push vs Pull 的意義
 
 <v-clicks>
 
@@ -190,13 +190,12 @@ layout: center
 - 此時，「**計算發生的時機**」決定：
   - 整體性能瓶頸  
   - 體感延遲與互動流暢度  
-  - Scheduler 設計與任務切片方式
 
 </v-clicks>
 
 <v-click>
 
-> 🔑 理解 Push 與 Pull 的本質，  
+> 🔑 理解 Push 與 Pull 的意義，  
 > 你就擁有評估每個框架 reactivity 解法的底圖。
 
 </v-click>

@@ -1,6 +1,5 @@
 ---
 layout: center
-class: text-center
 transition: fade
 ---
 
@@ -65,21 +64,6 @@ function Counter() {
   )
 }
 ```
----
-layout: center
----
-
-<v-clicks transition="fade"> 
-
-## React 為什麼會這樣？
-- 因為它是「render function 模型」：
-  - state 改變 → render function 重新執行 → child 也重新建立。
-  - 雖然 React 用 diff 避免真正重繪 DOM，但運算成本仍在。 
-- Signal 則是「依賴圖模型」：
-  - 狀態改變時，框架從資料層就知道誰該更新，無需整棵重跑。
- 
-</v-clicks>
-
 ---
 
 ### 概念對比

@@ -78,8 +78,6 @@ layout: center
 **3. DOM 更新**  
 - 直達節點／屬性，不需整棵 diff。
 
-**適合場景**  
-- 高頻微互動（滑桿、地圖標記、Canvas 等）。
 
 </v-clicks>
 
@@ -102,9 +100,6 @@ layout: center
 - 根據 getter 追蹤結果決定 patch 範圍，  
   深層結構讀取時有額外成本。
 
-**適合場景**  
-- 保留「直接改物件」手感的表單、巢狀資料結構。
-
 </v-clicks>
 
 ---
@@ -124,9 +119,6 @@ layout: center
 
 **3. DOM 更新**  
 - Diff 產生 patch；小變動仍需重跑 component。
-
-**適合場景**  
-- 深耕 React 生態、SSR / RSC 導向專案。
 
 </v-clicks>
 

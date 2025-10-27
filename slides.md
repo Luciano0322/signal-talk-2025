@@ -4,7 +4,6 @@ theme: default
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://ithelp.ithome.com.tw/upload/images/20250806/20129020K0qat8VUVg.png
-background: "#0f1117"
 # some information about your slides (markdown enabled)
 title: Reactivity 小技巧大變革：掌握 Signals 就這麼簡單！
 info: |
@@ -61,13 +60,9 @@ src: ./pages/why_signals.md
 ---
 src: ./pages/scheduler.md
 ---
-
+ 
 ---
 src: ./pages/demo.md
----
-
----
-src: ./pages/history.md
 ---
 
 ---
@@ -76,7 +71,7 @@ src: ./pages/push_vs_pull.md
 
 ---
 src: ./pages/reactivity_three_paths.md
----
+--- 
 
 ---
 src: ./pages/signal_core_concept.md

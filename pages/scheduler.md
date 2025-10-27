@@ -29,6 +29,6 @@ class: text-center
 
 <v-click>
 
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">Fine-grained reactivity = 資料層的 Fiber。</p>
+<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">Signal Scheduler = 資料層的 Fiber。</p>
 
 </v-click>
