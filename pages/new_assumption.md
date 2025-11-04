@@ -21,7 +21,7 @@ layout: center
 我們還需要 Virtual DOM 的比對嗎？
 </p>
 
-<SmartGif src="../assert/signal_meme.gif" />
+<SmartGif src="../assert/signal_meme.gif" alt="signal_meme" />
 
 </v-click>
 
