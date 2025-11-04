@@ -166,21 +166,6 @@ layout: center
 ---
 layout: center
 ---
-
-### 🔍 為什麼即使是 fine-grained 系統，也仍需要 Pull？
-
-<v-clicks>
-
-- 因為我們**無法預測「會不會被用到」與「何時用到」**。  
-- Pull 讓「資料變了」與「要不要算」分離：  
-  - 寫入階段只標 dirty  
-  - 讀取階段再決定是否重算
-
-</v-clicks>
-
----
-layout: center
----
 ### Push vs Pull 的意義
 
 <v-clicks>
@@ -198,9 +183,4 @@ layout: center
 > 🔑 理解 Push 與 Pull 的意義，  
 > 你就擁有評估每個框架 reactivity 解法的底圖。
 
-</v-click>
-
-<v-click>
-
-> 下一章，我們將看主流框架如何融合兩者的優勢。
 </v-click>

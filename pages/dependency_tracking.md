@@ -151,7 +151,7 @@ function schedule(job: () => void) {
 
 ---
 
-### ⚖️ 動態依賴：最棘手的挑戰
+### ⚖️ 動態依賴：棘手的挑戰
 
 ```ts
 effect(() => {
@@ -197,5 +197,11 @@ layout: center
 - Atomic Transaction / Batch 機制
 
 這些內容在我這次[IT 邦鐵人賽的系列文章](https://ithelp.ithome.com.tw/users/20129020/ironman/8219)都有展開講解。
+
+</v-click>
+
+<v-click>
+
+### 今天的講解就這裡，有興趣的朋友可以追蹤或訂閱我的文章
 
 </v-click>
