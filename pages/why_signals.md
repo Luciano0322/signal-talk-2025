@@ -9,7 +9,7 @@ mdc: true
 ---
 
 ## Signals 是資料流動的圖(Graph)
-<img src="../assert/signal_effect_graph.png" class="mt-4 w-[80%] h-[80%] mx-auto rounded shadow" />
+<img src="../assert/signal_effect_graph.png" class="mt-4 w-[80%] h-[80%] mx-auto rounded shadow" alt="signals_graph" />
 
 Signals 讓資料流變得像神經網路一樣精準，而不是用洪水式的方式重建整座城市。
 
@@ -66,12 +66,6 @@ transition: slide-left
 | **心智模型** | UI = f(state) | state = f(source)；UI 是一種  Effect |
 | **最佳化** | memo/useMemo/useCallback | 多數內建；跨層才顯式 memo |
 | **DevTools** | 成熟 | 起步（Solid/Vue/MobX 等） |
-
-<v-click>
-
-> **要點**：Signal 把「重渲染邊界」從 Component 級縮到 **State 級**，複雜度隨規模**線性**而非**指數**成長。
-
-</v-click>
 
 ---
 layout: center
@@ -166,7 +160,7 @@ Fine-grained 的四個優勢
 layout: center
 ---
 
-### 小結：Fine-grained 的核心價值
+### Fine-grained 的核心價值
 <v-clicks> 
 
 - **Signal**：最小可觀測單元，把「要不要重算」綁在值上  

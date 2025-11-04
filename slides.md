@@ -56,10 +56,6 @@ src: ./pages/new_assumption.md
 ---
 src: ./pages/why_signals.md
 ---
-
----
-src: ./pages/scheduler.md
----
  
 ---
 src: ./pages/demo.md
