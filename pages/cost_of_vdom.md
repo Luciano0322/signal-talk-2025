@@ -25,19 +25,13 @@ transition: slide-left
 
 </v-click>
 
----
-
-
-```mermaid
-graph LR
-State -->|更新| Component[Component re-run]
-Component -->|產生新的| VirtualDOM[Virtual DOM]
-VirtualDOM -->|Diff + Patch| DOM[Real DOM]
-```
 <v-click>
 
-<p class="text-center pt-8"> 
-React 一直努力讓這條路變得更快，但從沒改變過「需要比對」這件事。
+<p class="mb-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+為什麼要接受這種浪費?
+</p>
+<p class="mb-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+只因為框架告訴我們這樣是正常的?
 </p>
 
 </v-click>

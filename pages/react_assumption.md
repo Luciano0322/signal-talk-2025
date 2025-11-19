@@ -43,7 +43,7 @@ transition: fade
 
 <v-click>
 
-<Meme img="https://ithelp.ithome.com.tw/upload/images/20250806/20129020K0qat8VUVg.png"></Meme>
+<Meme img="https://ithelp.ithome.com.tw/upload/images/20250806/20129020K0qat8VUVg.png" alt="cat_meme"></Meme>
 <!-- ![cat_meme](https://ithelp.ithome.com.tw/upload/images/20250806/20129020K0qat8VUVg.png) -->
 <h4 class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">但十年後，這個假設還成立嗎？</h4>
 

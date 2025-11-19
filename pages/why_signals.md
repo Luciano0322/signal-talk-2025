@@ -11,7 +11,7 @@ mdc: true
 ## Signals 是資料流動的圖(Graph)
 <img src="../assert/signal_effect_graph.png" class="mt-4 w-[80%] h-[80%] mx-auto rounded shadow" alt="signals_graph" />
 
-Signals 讓資料流變得像神經網路一樣精準，而不是用洪水式的方式重建整座城市。
+Signals 讓資料流變得像神經網路一樣精準，而不是每次都打掉重練。
 
 ---
 layout: center
@@ -24,15 +24,28 @@ layout: two-cols
 transition: slide-left
 ---
 
-### React 如何處理 state（回顧）
-<img src="https://ithelp.ithome.com.tw/upload/images/20250812/20129020vIIaX2bGN7.png" class="w-[60%] h-[80%] mx-auto rounded shadow" />
+### React 如何處理 Component Tree
+<!-- <img src="https://ithelp.ithome.com.tw/upload/images/20250812/20129020vIIaX2bGN7.png" class="w-[60%] h-[80%] mx-auto rounded shadow" /> -->
+```mermaid
+graph TD
+  App[App]
+  App --> Header[Header]
+  App --> Main[Main]
+  App --> Footer[Footer]
+
+  Main --> CounterSection[CounterSection]
+  CounterSection --> CounterDisplay[CounterDisplay]
+  CounterSection --> CounterButton[CounterButton]
+
+```
 
 ::right::
 
 <v-clicks class="pt-8">
 
-- 事件 → `setState` → 重新執行元件 function → 產生新 VDOM → Diff → Commit
-- 流程熟悉、心智一致，但**函式重跑**與**子樹比對**是基礎成本
+- React 的重渲染是「沿著這棵樹往下跑」。
+- 當 CounterButton 的狀態改變 → CounterSection、Main、App 可能都被迫重跑。
+- 這是一種 結構式更新：由上而下，猜測哪裡需要改。
 
 </v-clicks>
 
@@ -41,31 +54,46 @@ layout: two-cols
 transition: slide-left
 ---
 
-### Fine-grained Reactivity 的處理方式
-<img src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020dD0Lsnk1Ee.png" class="w-[75%] h-[90%] mx-auto rounded shadow" />
+### Signals Data Graph 的處理方式
+<!-- <img src="https://ithelp.ithome.com.tw/upload/images/20250806/20129020dD0Lsnk1Ee.png" class="w-[75%] h-[90%] mx-auto rounded shadow" /> -->
+```mermaid
+flowchart LR
+ subgraph s1["Unrelated Component"]
+        Header["Header"]
+        Main["Main"]
+        Footer["Footer"]
+        CounterSection["CounterSection"]
+  end
+ subgraph s2["Related Component"]
+        CountSig[("signal: count")]
+        Display["CounterDisplay"]
+        Button["CounterButton"]
+  end
+    CountSig --> Display
+    Button --> CountSig
+```
 
 ::right::
 
 <v-clicks class="pt-8">
 
-- 讀時建立依賴；寫時**精準通知**受影響節點
-- Scheduler 批次：先重算 Computed，再觸發 Effect；**直達 DOM 節點**
-
+- 這是同一個畫面，但這次不是「誰包誰」，而是「誰用誰」。
+- CounterButton 改變 count，count 同步通知所有依賴它的節點：
+  - CounterDisplay 顯示新數字
+  - 其他無關元件（Footer、Main...）完全不受影響
+- 這是一種 資料式更新：資料知道誰用到它，直接「精準推送」。
 </v-clicks>
 
 ---
 
 ### 核心差異一覽
 
-| 面向 | React useState & VDOM | Fine-Grained（Signal/Atom） |
-|---|---|---|
-| **更新單位** | Component（整棵子樹） | State cell（單一值） |
-| **依賴追蹤** | 每次 render 重跑 → 比對 VDOM | 讀取即註冊；寫入精準通知 |
-| **排程模型** | 異步批次 + Diff + Commit | 異步批次（batch）+ 拓撲排序 + 直達副作用 |
-| **閒置成本** | UI 不變也要重跑/生成 VDOM | 結果不變即短路，不進下游 |
-| **心智模型** | UI = f(state) | state = f(source)；UI 是一種  Effect |
-| **最佳化** | memo/useMemo/useCallback | 多數內建；跨層才顯式 memo |
-| **DevTools** | 成熟 | 起步（Solid/Vue/MobX 等） |
+| React 思維        | Signal 思維               |
+| --------------- | ----------------------- |
+| 元件之間的父子結構       | 狀態之間的依賴圖                |
+| 從上往下 re-render  | 由資料主動通知                 |
+| 更新範圍大，靠 memo 優化 | 更新精準，靠 dependency graph |
+| 描述「UI 長什麼樣」     | 描述「資料怎麼流動」              |
 
 ---
 layout: center
@@ -76,7 +104,7 @@ class: text-center
 
 <v-clicks>
 
-- **函數重跑開銷**：為取得新 VDOM，整個元件函式重跑；大型樹常見「渲染但畫面不變」。
+- **函式重跑開銷**：為取得新 VDOM，整個元件函式重跑 👉 大型樹常見「渲染但畫面不變」。
 - **元件邊界 ≠ 資料邊界**：多個 state＋layout 綁在同一元件，任一 state 改動都牽動整個函式。
 
 </v-clicks>
@@ -91,7 +119,7 @@ class: text-center
 | **Computed / Derivation** | `useMemo` | 由 Signal 衍生、具快取的純函式 |
 | **Effect / Reaction** | `useEffect` | 依賴變化後執行副作用 |
 | **Batch / Transaction** | `unstable_batchedUpdates` | 將多次寫入壓縮為一次傳播 |
-| **Graph / Dependency Map** | React Fiber（比喻） | 追蹤資料依賴的有向圖 |
+| **Graph / Dependency Map** | React Fiber | 追蹤資料依賴的有向圖 |
 
 ---
 
@@ -99,62 +127,24 @@ class: text-center
 <img src="https://ithelp.ithome.com.tw/upload/images/20250807/201290200xRWqSShC7.png" class="w-[60%] h-full mx-auto mt-3 rounded" />
 
 ---
-layout: center
----
 
-### Fine-grained Reactivity 三步驟：讀 → 寫 → 傳
-
-| 階段 | 示意程式碼 | 內部動作 |
-|---|---|---|
-| **讀（Tracking）** | `console.log(count())` | 記錄「目前執行的 Computed/Effect 依賴 count」 |
-| **寫（Mark Dirty）** | `count.set(v => v + 1)` | 只做兩件事：①更新值 ②把受影響節點標 dirty 入佇列 |
-| **傳（Propagate）** | （Scheduler flush） | 拓撲排序：先重算 Computed → 值有變才往下游 Effect |
-
----
-
-### 對照範例：Counter
+### Auto-tracking：讓依賴自動連線
  
 **React**
-```tsx {all|4|2|4-7|all}
-function Counter() {
-  const [count, setCount] = useState(0)
-  return (
-    <button onClick={() => setCount(c => c + 1)}>
-      Count:
-      <span>{count}</span>
-    </button>
-  )
-}
-// 點擊 → 元件重跑 → 產生新 VDOM → Diff <span> → Commit
+```ts {all|3|all}
+useEffect(() => {
+  console.log(a, b)
+}, [a, b])
 ```
 
-**Fine-grained (Solid.js)**
-```tsx {all|3|1|5|all}
-const [count, setCount] = createSignal(0)
-const Counter = () => (
-  <button onClick={() => setCount(c => c + 1)}>
-    Count:
-    <span>{count()}</span>
-  </button>
-)
-// 點擊只觸發文字節點內容；無函式重跑、無整棵 diff
+**Fine-grained (signal)**
+```ts {all|2|all}
+effect(() => {
+  console.log(a.get(), b.get())
+})
 ```
 
----
-layout: center
----
-
-<h2 class="mb-4">
-Fine-grained 的四個優勢
-</h2>
-<v-clicks>
-
-1. **更新成本與 UI 大小解耦**：只重算受影響的 Computed / Effect。   
-2. **預測式資料流**：依賴圖可走訪 → 變動追蹤變簡單。  
-3. **副作用分離**：`effect(() => domRef(), data())` 僅在依賴值真的改變時觸發，避開 deps 陣列陷阱。  
-4. **測試更輕量**：Computed 為純函數 → 可在 Node 跑，不必拉 DOM / renderer。  
-
-</v-clicks>
+- Signal 自動追蹤 scope 內被讀取的值。
 
 ---
 layout: center
