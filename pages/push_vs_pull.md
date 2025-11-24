@@ -4,183 +4,103 @@ transition: slide-left
 ---
 
 # Push vs Pull
----
-layout: center
----
 
-### 📖 前情提要
-
-<p>我們這裡要釐清：</p>
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-<b>Push-based</b> 與 <b>Pull-based</b> 這兩種模式，
-</p>
-<p>
-在細顆粒度（fine-grained） reactivity 裡有什麼不同？
-</p>
 ---
-layout: center
+layout: two-cols
+transition: slide-left
 ---
-### 🧩 核心概念
+### 生活案例：Pull-based
+早餐店點餐為例
 
-<v-clicks>
+```mermaid
+sequenceDiagram
+    participant Customer as 客人
+    participant Shop as 早餐店
+    
+    Customer->>Shop: 阿姨我的好了嗎？
+    Shop-->>Customer: 立刻查看並回覆（同步）
+    
+    Note over Customer,Shop: 客人: 主動查詢 / 阿姨: 被動、同步回應
+```
 
-- **Push-based**：把「計算」提早到寫入當下完成。  
-- **Pull-based**：把「計算」延遲到真正有人讀取才進行。  
-- 換句話說：  
-  - Push → 「資料一改，立即通知」  
-  - Pull → 「先標髒，等要用時才算」
+::right::
+
+<v-clicks class="pt-8">
+ 
+- **提供者（阿姨）**：被動方   
+- **取用者（帥哥/美女）**：主動方  
+- **動作（主動問）**：同步回應  
 
 </v-clicks>
 
 ---
-layout: center
+layout: two-cols
+transition: slide-left
 ---
-### 🍱 生活案例：Push-based
 
-<v-clicks>
+### 生活案例：Push-based
+賣場排隊結帳為例
 
-- 百貨公司美食街點餐 → 拿到震動圓盤  
-- **寫入（下單）**：點餐完成  
-- **推送（完成即通知）**：餐做好 → 圓盤震動  
-- **副作用（取餐）**：收到訊號就去櫃台領餐  
+```mermaid
+sequenceDiagram
+    participant Shop as 店員
+    participant Customer as 客人
+    
+    Customer->>Shop: 排隊等待（被動）
+    Shop-->>Customer: 下一位！（推播通知）
+    
+    Note over Shop,Customer: 店員主動通知 → 客人要立即反應
+```
 
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-🧠 對應 reactivity：
-</p>
-<p class="border-l-4 border-[#00e6b8] border-solid pl-4">
-寫入時就沿依賴鏈重算並通知後續節點。
-</p>
+::right::
+
+<v-clicks class="pt-8">
+
+- **提供者（店員）**：主動方  
+- **取用者（客人）**：被動方  
+- **動作（下面一位）**：同步 / 非同步 (店員換班)  
 
 </v-clicks>
 
 ---
-layout: center
+layout: two-cols
+transition: slide-left
 ---
 
-### 🧋 生活案例：Pull-based
+### 生活案例：Push-Pull
+買手搖飲料
+```mermaid
+sequenceDiagram
+    participant Customer as 客人
+    participant Shop as 店家
+    participant Screen as 出餐螢幕
+    
+    loop 客人每隔一段時間檢查螢幕
+        Customer->>Screen: 看自己的號碼到了沒（Pull）
+        Screen-->>Customer: 顯示目前出餐號碼（同步）
+    end
+    
+    Shop-->>Screen: 更新出餐號碼（Push）
+    Shop-->>Customer: 87號！請取餐（Push）
+    
+    Note over Customer,Screen: Push 叫號 + Pull 查看 → 雙向更新最穩定
+```
 
-<v-clicks>
+::right::
 
-- 手搖飲店點單 → 拿到號碼牌  
-- **寫入（下單）**：點餐完成  
-- **標記（狀態改變）**：店家掛號到螢幕  
-- **讀取 → 重算（查看才發生）**：看到號碼才去拿  
-- **副作用（取餐）**：抬頭看到才動作  
+<v-clicks class="pt-8">
 
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-🧠 對應 reactivity：
-</p>
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-寫入只標記 dirty，真正計算延後到被讀取時。
-</p>
-</v-clicks>
-
----
-
-### 🔍 核心定義對照
-
-| 模式 | 行為焦點 | 簡化流程 |
-|------|-----------|-----------|
-| **Push-based** | 寫入即計算：資料一改動就立刻 propagate | `set() → propagate → compute → effect` |
-| **Pull-based** | 寫入只標記：等讀取時再計算 | `set() → markDirty ⏸ read() → compute → effect` |
-
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-兩者都會「推送」訊號：  
-</p>
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-Push 推的是 <b>計算</b>，Pull 推的是 <b>標記</b>。
-</p>
-
----
-
-### 🧭 時序流程
-
-<v-clicks>
-
-**Push-based**
-<!-- ![Push-based](https://ithelp.ithome.com.tw/upload/images/20250805/20129020sTny6WN8x3.png) -->
-<img src="https://ithelp.ithome.com.tw/upload/images/20250805/20129020sTny6WN8x3.png" class="mx-auto w-[80%] h-[90%]"/>
-
-</v-clicks>
----
-
-### 🧭 時序流程
-<v-clicks>
-
-**Pull-based**
-<!-- ![Pull-based](https://ithelp.ithome.com.tw/upload/images/20250805/20129020THYHE5H0Jx.png) -->
-<img src="https://ithelp.ithome.com.tw/upload/images/20250805/20129020THYHE5H0Jx.png" class="mx-auto w-[60%] h-[90%]"/>
-
-</v-clicks>
-
----
-
-### ⚖️ 優缺點比較
-
-| 面向 | Push-based | Pull-based |
-|------|-------------|-------------|
-| 讀取延遲 | ✅ 最低，資料永遠最新 | ⏳ 若節點髒，第一次讀取需重算 |
-| 寫入成本 | 💸 潛在大（依賴深度 × 次數） | 💡 小（僅標記 dirty） |
-| 過度計算 | 多，即使結果沒被用到 | 少，只在實際讀取時發生 |
-| 批次化能力 | 較難（先算完） | ✅ 天生適合：可 flush 一次性更新 |
-| 除錯可觀測性 | 依賴鏈展開明確 | 需 DevTools 追蹤 pull 時機 |
-| 適合場景 | 高寫入、低讀取（協同編輯） | 低寫入、高讀取（儀表板） |
-
----
-
-### 🧩 應用場景與建議策略
-
-| 典型需求 | 建議模式 | 說明 |
-|-----------|-----------|------|
-| 即時共同編輯、遊戲同步 | **Push** | 每次寫入即時反映、依賴鏈淺 |
-| 監控面板、資料視覺化 | **Pull** | 寫入少但讀取頻繁 |
-| 動畫、Timeline、Scroll 驅動 | **Pull + Scheduler** | 延遲重算、批次更新 frame |
-| 資料 Pipeline、一次性運算 | **Push-on-Commit** | 一次算完再分發重用結果 |
-
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-React 屬於 <b>Pull + Scheduler</b>（靠 batching update）。  
-</p>
-<p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
-RxJS、MobX 則偏向 <b>Push-on-Commit</b>。
-</p>
----
-layout: center
----
-### ❓ 常見迷思澄清
-
-<v-clicks>
-
-- **Pull 就一定全域掃描？**  
-  → ❌ 不必，只在讀取時檢查該鏈的 dirty 標記。  
-
-- **Push 必定浪費計算？**  
-  → ❌ 當更新後立刻被使用，先算反而更快（例如 Canvas 小遊戲）。  
-
-- **Push 與 Pull 只能二選一？**  
-  → ❌ 現代 signal framework 多採 **Hybrid push-pull**：  
-    - 寫入階段 push 髒標記  
-    - 讀取階段 pull 重算（兼具即時性與惰性計算）
-
-</v-clicks>
-
----
-layout: center
----
-### Push vs Pull 的意義
-
-<v-clicks>
-
-- 在 coarse-grained（VDOM）世界，整棵樹 diff 已足夠抽象。  
-- 但在 fine-grained 世界，一次 `set()` 可能波及數百個 derivation。  
-- 此時，「**計算發生的時機**」決定：
-  - 整體性能瓶頸  
-  - 體感延遲與互動流暢度  
+- **提供者（店員）**：主動方  
+- **取用者（客人）**：主動方  
+- **動作（主動問 / 主動通知）**：同步 / 非同步  
 
 </v-clicks>
 
 <v-click>
-
-> 🔑 理解 Push 與 Pull 的意義，  
-> 你就擁有評估每個框架 reactivity 解法的底圖。
-
+  <p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+  Signals runtime 就是這個模式 
+  </p>
+  <p class="mt-4 border-l-4 border-[#00e6b8] border-solid pl-4">
+  Push 建立資料變動 → Pull 批次 flush effect → 負載平衡、更新精準。
+  </p>
 </v-click>

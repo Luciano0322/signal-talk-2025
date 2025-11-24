@@ -56,23 +56,15 @@ src: ./pages/new_assumption.md
 ---
 src: ./pages/why_signals.md
 ---
- 
----
-src: ./pages/demo.md
----
 
 ---
 src: ./pages/push_vs_pull.md
 ---
 
 ---
-src: ./pages/reactivity_three_paths.md
---- 
-
----
 src: ./pages/signal_core_concept.md
 ---
 
 ---
-src: ./pages/dependency_tracking.md
+src: ./pages/demo.md
 ---

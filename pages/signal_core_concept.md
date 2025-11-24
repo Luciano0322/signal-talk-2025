@@ -4,19 +4,6 @@ transition: slide-left
 ---
 
 # Signal 運作原理：資料 → 衍生 → 副作用
----
-layout: center
----
-### 前情提要
-
-<v-clicks>
-
-- 前幾章我們談了 reactivity 的演化與三大流派。
-- 現在，回到系列主軸：**Signal 系統的內部運作。**
-- 我們要看見：  
-  資料如何流動 → 如何產生衍生值 → 最終觸發副作用。
-
-</v-clicks>
 
 ---
 layout: two-cols
@@ -26,7 +13,7 @@ transition: slide-left
 ### 🧩 核心流程：資料 → 衍生 → 副作用
 
 <!-- ![核心流程](https://ithelp.ithome.com.tw/upload/images/20250806/201290201ITMntjbpi.png){class="w-[75%] mx-auto"} -->
-<img class="w-[60%] h-full mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/201290201ITMntjbpi.png">
+<img class="w-[60%] h-[85%] mx-auto" src="https://ithelp.ithome.com.tw/upload/images/20250806/201290201ITMntjbpi.png">
 
 ::right::
 
@@ -167,20 +154,9 @@ transition: slide-left
 </v-clicks>
 
 ---
-
-### ⚠️ 常見陷阱與解法
-
-| 情境 | 問題 | 解法 |
-|------|------|------|
-| 連環寫入 | Effect 內多次 set() 導致重算過多 | 用 `batch()` 合併 |
-| 無限循環 | Effect 改寫自己依賴的 Signal | Dev-mode 偵測並報錯 |
-| 依賴環 | Computed A ↔ B 互相依賴 | 建圖時偵測 cycle |
-| 記憶體洩漏 | 動態建立 Effect 未 dispose | `onCleanup()` 或 unmount 時自動清理 |
-
----
 layout: center
 ---
-### 🧠 結語
+### 🧠 總整理
 
 <v-clicks>
 
@@ -193,10 +169,3 @@ layout: center
 每次資料改變，都能以最小成本更新正確的節點。
 
 </v-clicks>
-
-<v-click>
-
-> 下一章，我們將深入 **Dependency Tracking（依賴追蹤）**，  
-> 看這四個角色如何彼此串起整個反應式圖譜。
-
-</v-click>
