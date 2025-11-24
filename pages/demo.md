@@ -3,7 +3,7 @@ layout: center
 transition: fade
 ---
 
-# 實驗：按照前面的概念建立 Signals 機制
+# 最小的實作：按照前面的概念建立 Signals 機制
 
 ---
 
@@ -14,8 +14,7 @@ export function signal(value) {
   const set = (nextValue) => value = nextValue;
   return { get, set };
 }
-
-// 基礎閉包概念暫存資料
+// 利用基礎閉包概念暫存資料
 ```
 
 ---
