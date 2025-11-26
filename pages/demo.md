@@ -96,6 +96,24 @@ export function computed(fn) {
 ```
 
 ---
+
+### 使用範例
+
+```js
+const count = signal(0);
+
+const double = computed(() => count.get() * 2);
+
+effect(() => {
+  console.log("render →", count.get(), double());
+});
+
+count.set(1);
+// render → 1 2
+
+```
+
+---
 layout: two-cols
 transition: slide-left
 class: mx-2
