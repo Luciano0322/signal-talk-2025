@@ -15,7 +15,7 @@ class: text-center
 
 - 目前是在山隆通運擔任資深前端工程師。
 - 六年以上前端開發的經驗，也有撰寫教學和技術文章，多次 IT 邦鐵人賽經驗。
-- 曾自行實作一套開源的信號系統（segnale-react）
+- 曾自行實作一套開源的 signals-base 狀態管理系統（segnale-react）
 - 這兩年我在寫一系列關於 Signal 與 fine-grained reactivity 的文章，也把完整的程式碼和單元測試公開在 GitHub。
 
 ---
