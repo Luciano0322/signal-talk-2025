@@ -52,7 +52,7 @@ export function signal(value) {
 ---
 
 #### Effect 實作
-```js {all|2-7|14-22|15|16|18|20|all}
+```js {all|2-7|10-18|11|12|14|16|all}
 // 這裡接著 signal 往下新增
 function cleanup(running) {
   for (const dep of running.dependencies) {
@@ -62,10 +62,6 @@ function cleanup(running) {
 }
 
 export function effect(fn) {
-  const running = {
-    execute,
-    dependencies: new Set()
-  };
   const execute = () => {
     cleanup(running);          // 清除舊的依賴
     effectStack.push(running); // 標記現在這個 effect 執行
@@ -75,8 +71,11 @@ export function effect(fn) {
       effectStack.pop();       // 執行完，把他從 stack 踢掉
     }
   };
-  running.execute();
-  return running;
+  const running = {
+    execute,
+    dependencies: new Set()
+  };
+  execute();
 }
 ```
 

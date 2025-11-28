@@ -96,20 +96,6 @@ flowchart LR
 | 描述「UI 長什麼樣」     | 描述「資料怎麼流動」              |
 
 ---
-layout: center
-class: text-center
----
-
-### 為什麼用 useState 會「多做功」？
-
-<v-clicks>
-
-- **函式重跑開銷**：為取得新 VDOM，整個元件函式重跑 👉 大型樹常見「渲染但畫面不變」。
-- **元件邊界 ≠ 資料邊界**：多個 state＋layout 綁在同一元件，任一 state 改動都牽動整個函式。
-
-</v-clicks>
-
----
 
 ### Signal 的術語與 React 類比
 
