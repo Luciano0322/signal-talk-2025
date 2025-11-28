@@ -75,7 +75,7 @@ export function effect(fn) {
     execute,
     dependencies: new Set()
   };
-  execute();
+  running.execute();
 }
 ```
 
