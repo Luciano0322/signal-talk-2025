@@ -176,4 +176,4 @@ layout: center
 layout: center
 ---
 
-## 謝謝大家的餐與
+## 謝謝大家的參與
